@@ -60,7 +60,7 @@ function CustomizedTable(props) {
           <TableRow>
             <CustomTableCell>Game name</CustomTableCell>
             <CustomTableCell>Start at</CustomTableCell>
-            <CustomTableCell>end</CustomTableCell>
+            <CustomTableCell>end at</CustomTableCell>
             <CustomTableCell>Mode</CustomTableCell>
             <CustomTableCell>Map</CustomTableCell>
             <CustomTableCell>Players</CustomTableCell>

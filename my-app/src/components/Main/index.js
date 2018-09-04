@@ -31,6 +31,7 @@ class MainPage extends React.Component {
     return (
       <Container>
         <Header>
+          <img src="/images/ace_logo.png" alt="Ace Labs" height="auto" width="150" />
           <Title>Tournament Portal</Title>
           {isLogin ? <div /> : <Login />}
         </Header>
