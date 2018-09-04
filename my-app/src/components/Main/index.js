@@ -3,26 +3,26 @@ import styled from 'styled-components';
 import Button from '@material-ui/core/Button';
 
 import GamesList from '../GamesList';
-
+import Login from '../Login/Modal';
 const Container = styled.div`
-height: 100%;
+  height: 100%;
 `;
 
 const Header = styled.div`
   display: flex;
   justify-content: space-around;
   align-items: center;
-  height: 20%;  
+  height: 20%;
   ${'' /* height: 200px; */};
 `;
 
-const Login = styled.div`
-flex-grow: 1;
-`;
+// const Login = styled.div`
+//   flex-grow: 1;
+// `;
 
 const Title = styled.h2`
-flex-grow: 6;
-text-align: center;
+  flex-grow: 6;
+  text-align: center;
 `;
 
 class MainPage extends React.Component {
@@ -37,11 +37,7 @@ class MainPage extends React.Component {
       <Container>
         <Header>
           <Title>Tournament Portal</Title>
-          <Login>
-            <Button variant="outlined" color="primary">
-              Login
-            </Button>
-          </Login>
+          <Login />
         </Header>
         <GamesList />
       </Container>
