@@ -7,6 +7,7 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import moment from 'moment';
 // import Button from '@material-ui/core/Button';
 import GameDialog from './GameDialog';
 
@@ -38,8 +39,15 @@ const styles = theme => ({
 
 // return { id, name, calories, fat, carbs, protein };
 const rows = [
-  { id: 1, name: 'me', start: '10:10', end: '11:11', mode: 'flag', map: 'bigmap', players: '11' },
-  { id: 2, name: 'you', start: '13:13', end: '13:13', mode: 'none', map: 'smallmap', players: '16' }
+  { id: 1, name: 'Urban Terror', 
+  start: moment('2018-09-11T14:00:00Z').format('MMMM Do YYYY, h:mm:ss a'), 
+  end: moment('2018-09-11T16:00:00Z').format('MMMM Do YYYY, h:mm:ss a'), mode: 'capture flag', map: 'bigmap', players: '11' },
+  { id: 2, name: 'Urban Terror', 
+  start: moment('2018-09-13T17:00:00Z').format('MMMM Do YYYY, h:mm:ss a'), 
+  end: moment('2018-09-13T18:00:00Z').format('MMMM Do YYYY, h:mm:ss a'), mode: 'heroes brawl', map: 'smallmap', players: '16' },
+  { id: 2, name: 'Poker', 
+  start: moment('2018-09-22T19:00:00Z').format('MMMM Do YYYY, h:mm:ss a'), 
+  end: moment('2018-09-22T20:00:00Z').format('MMMM Do YYYY, h:mm:ss a'), mode: 'heroes brawl', map: 'smallmap', players: '7' }
 ];
 
 function CustomizedTable(props) {
@@ -50,11 +58,11 @@ function CustomizedTable(props) {
       <Table className={classes.table}>
         <TableHead>
           <TableRow>
-            <CustomTableCell>Game Name</CustomTableCell>
-            <CustomTableCell>start at</CustomTableCell>
-            <CustomTableCell>game end</CustomTableCell>
-            <CustomTableCell>mode</CustomTableCell>
-            <CustomTableCell>map</CustomTableCell>
+            <CustomTableCell>Game name</CustomTableCell>
+            <CustomTableCell>Start at</CustomTableCell>
+            <CustomTableCell>end</CustomTableCell>
+            <CustomTableCell>Mode</CustomTableCell>
+            <CustomTableCell>Map</CustomTableCell>
             <CustomTableCell>Players</CustomTableCell>
             <CustomTableCell />
           </TableRow>
@@ -70,9 +78,9 @@ function CustomizedTable(props) {
                 <CustomTableCell>{row.end}</CustomTableCell>
                 <CustomTableCell>{row.mode}</CustomTableCell>
                 <CustomTableCell>{row.map}</CustomTableCell>
-                <CustomTableCell>{row.players}</CustomTableCell>
+                <CustomTableCell>{row.players}/16</CustomTableCell>
                 <CustomTableCell>
-                <GameDialog />
+                <GameDialog isLogin={props.isLogin} />
                 </CustomTableCell>
               </TableRow>
             );

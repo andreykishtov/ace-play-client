@@ -9,8 +9,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 
 export default class FormDialog extends React.Component {
   state = {
-    open: false,
-    isLogin: true
+    open: false
   };
 
   handleClickOpen = () => {
@@ -44,7 +43,7 @@ export default class FormDialog extends React.Component {
     );
   }
 
-  renderDialog() {
+  renderLoggedDialog() {
     return (
       <Dialog open={this.state.open} onClose={this.handleClose} aria-labelledby="form-dialog-title">
         <DialogTitle id="form-dialog-title">Subscribe</DialogTitle>
@@ -73,7 +72,7 @@ export default class FormDialog extends React.Component {
         <Button variant="outlined" color="primary" onClick={this.handleClickOpen}>
           Join
         </Button>
-        {this.state.isLogin ? this.renderDialog() : this.renderLoginDialog()}
+        {this.props.isLogin ? this.renderLoggedDialog() : this.renderLoginDialog()}
       </div>
     );
   }

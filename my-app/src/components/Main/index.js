@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import Button from '@material-ui/core/Button';
 
 import GamesList from '../GamesList';
 import Login from '../Login/Modal';
@@ -13,15 +12,10 @@ const Header = styled.div`
   justify-content: space-around;
   align-items: center;
   height: 20%;
-  ${'' /* height: 200px; */};
 `;
 
-// const Login = styled.div`
-//   flex-grow: 1;
-// `;
-
 const Title = styled.h2`
-  flex-grow: 6;
+  flex-grow: 7;
   text-align: center;
 `;
 
@@ -33,13 +27,14 @@ class MainPage extends React.Component {
   }
 
   render() {
+    const { isLogin } = this.props;
     return (
       <Container>
         <Header>
           <Title>Tournament Portal</Title>
-          <Login />
+          {isLogin ? <div /> : <Login />}
         </Header>
-        <GamesList />
+        <GamesList isLogin={isLogin} />
       </Container>
     );
   }

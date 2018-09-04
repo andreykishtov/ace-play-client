@@ -1,9 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import { connect } from 'react-redux';
+import { registerUser } from '../../state/actions/users'
 
 const styles = theme => ({
   textField: {
@@ -24,9 +25,14 @@ const Container = styled.div`
   margin-top: 20%;
 `;
 
-const TextFieldMargins = props => {
-  const { classes } = props;
+class Register extends React.Component {
+  
+  onRegister = () => {
+    this.props.addUser(1);
+  }
 
+  render() {
+    const { classes, user } = this.props;
   return (
     <Container className={classes.container}>
       <Header>Register</Header>
@@ -50,15 +56,29 @@ const TextFieldMargins = props => {
         helperText="type your password"
         margin="normal"
       />
-      <Button variant="outlined" color="primary" onClick={this.handleClickOpen}>
+      <Button variant="outlined" color="primary" onClick={this.onRegister}>
         Register
       </Button>
     </Container>
   );
+}
 };
 
-TextFieldMargins.propTypes = {
-  classes: PropTypes.object.isRequired
-};
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    addUser: (user) => {
+      dispatch(registerUser(user));
+    }
+  }
+}
 
-export default withStyles(styles)(TextFieldMargins);
+const mapStateToProps = (state, ownProps) => {
+  return {
+    user: state.users.user
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withStyles(styles)(Register))
