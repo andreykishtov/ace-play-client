@@ -55,7 +55,9 @@ class AdminForm extends React.Component {
     name: '',
     maxPlayer: '',
     mode: '',
-    map: ''
+    map: '',
+    start: '',
+    end: ''
   };
 
   handleChange = name => event => {
@@ -64,7 +66,9 @@ class AdminForm extends React.Component {
     });
   };
 
-  onSubmit() {}
+  createGame = () => {
+
+  }
 
   render() {
     const { classes } = this.props;
@@ -135,6 +139,7 @@ class AdminForm extends React.Component {
         id="datetime-start"
         label="Game Start"
         type="datetime-local"
+        value={this.state.start}
         fullWidth
         style ={{width: '100%', margin:'10px 0'}}
         InputLabelProps={{
@@ -145,13 +150,14 @@ class AdminForm extends React.Component {
         id="datetime-end"
         label="Game End"
         type="datetime-local"
+        value={this.state.end}        
         style ={{width: '100%', margin:'10px 0'}}
         InputLabelProps={{
           shrink: true,
         }}
       />
         </form>
-        <Button variant="contained" color="primary" className={classes.button}>
+        <Button onClick={this.createGame} variant="contained" color="primary" className={classes.button}>
           Send
           <Icon className={classes.rightIcon}>send</Icon>
         </Button>

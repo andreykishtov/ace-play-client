@@ -20,7 +20,7 @@ class App extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { currentPage: MAIN, isLogin: true, isAdmin: true };
+    this.state = { currentPage: MAIN, isLogin: false, isAdmin: true };
   }
 
   onChangePage = page => {
