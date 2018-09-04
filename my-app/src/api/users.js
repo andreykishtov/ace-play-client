@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const URL = 'http://10.61.98.49:8080';
+const URL = 'http://10.168.199.150:8080';
 
 export default {
   fetchUser(userId) {
