@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import './App.css';
-import AdminScreen from './components/AdminScreen';
+// import AdminScreen from './components/AdminScreen';
 import MainScreen from './components/Main';
 import styled from 'styled-components';
 import Register from './components/Login/Register';
 
 const MAIN = 'Main';
-const ADMIN_SCREEN = 'AdminScreen';
+// const ADMIN_SCREEN = 'AdminScreen';
 const REGISTER = 'register';
 // const LOGIN = 'Login';
 
@@ -20,21 +20,42 @@ class App extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { currentPage: MAIN, isLogin: false };
+    this.state = { currentPage: MAIN, isLogin: true, isAdmin: true };
   }
 
-  onChangePage = (page) => {
-    this.setState({currentPage: page})
+  onChangePage = page => {
+    this.setState({ currentPage: page });
+  };
+
+  checkLogin = (email, password) => {
+    if (email === '1' && password === '1') {
+      this.setState({ isLogin: true });
+      return 'login success';
+    }
+    return 'wrong password';
+  };
+
+  logout = () => {
+    this.setState({
+      isLogin: false
+    });
   }
 
   renderPage() {
     switch (this.state.currentPage) {
       case MAIN:
-        return <MainScreen isLogin={this.state.isLogin} />;
-      case ADMIN_SCREEN:
-        return <AdminScreen />;
+        return (
+          <MainScreen
+            logout={this.logout}
+            checkLogin={this.checkLogin}
+            isLogin={this.state.isLogin}
+            isAdmin={this.state.isAdmin}
+          />
+        );
+      // case ADMIN_SCREEN:
+      //   return <AdminScreen />;
       case REGISTER:
-        return <Register />
+        return <Register />;
       default:
         return;
     }

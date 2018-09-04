@@ -6,7 +6,6 @@ import { REGISTER, REGISTER_SUCCESS } from '../actions/users';
 // Our worker Saga: will perform the async increment task
 export function* registerUser(action) {
   try {
-    console.log(api);
     yield call(api.registerUser, action.payload.id);
     yield put({ type: REGISTER_SUCCESS, payload: action.action.payload });
   } catch (error) {

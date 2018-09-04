@@ -1,8 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Button from '@material-ui/core/Button';
-import Login from './Login';
+import AdminForm from './index';
 
 const styles = theme => ({
   paper: {
@@ -28,10 +29,12 @@ class SimpleModal extends React.Component {
   };
 
   render() {
+    const { classes } = this.props;
+
     return (
       <div>
-        <Button onClick={this.handleOpen} variant="outlined" color="primary">
-          Login
+        <Button onClick={this.handleOpen} variant="contained" color="primary">
+          Create Game
         </Button>
         <Modal
           aria-labelledby="simple-modal-title"
@@ -39,11 +42,27 @@ class SimpleModal extends React.Component {
           open={this.state.open}
           onClose={this.handleClose}
         >
-          <Login handleClose={this.handleClose} checkLogin={this.props.checkLogin} />
+          <div
+            style={{
+              top: `50%`,
+              left: `50%`,
+              transform: `translate(-${50}%, -${50}%)`
+            }}
+            className={classes.paper}
+          >
+            <AdminForm />
+          </div>
         </Modal>
       </div>
     );
   }
 }
 
-export default withStyles(styles)(SimpleModal);
+SimpleModal.propTypes = {
+  classes: PropTypes.object.isRequired
+};
+
+// We need an intermediary variable for handling the recursive nesting.
+const SimpleModalWrapped = withStyles(styles)(SimpleModal);
+
+export default SimpleModalWrapped;

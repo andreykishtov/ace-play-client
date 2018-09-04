@@ -28,31 +28,34 @@ const styles = theme => ({
   }
 });
 
-const currencies = [
+const mode = [
   {
-    value: 'USD',
-    label: '$'
+    value: 'flag',
+    label: 'capture flag'
   },
   {
-    value: 'EUR',
-    label: '€'
+    value: 'brawl',
+    label: 'heroes brawl'
+  }
+];
+
+const map = [
+  {
+    value: 'Berlin',
+    label: 'Berlin'
   },
   {
-    value: 'BTC',
-    label: '฿'
-  },
-  {
-    value: 'JPY',
-    label: '¥'
+    value: 'Tel Aviv',
+    label: 'Tel Aviv'
   }
 ];
 
 class AdminForm extends React.Component {
   state = {
-    name: 'Cat in the Hat',
+    name: '',
     maxPlayer: '',
-    multiline: 'Controlled',
-    currency: 'EUR'
+    mode: '',
+    map: ''
   };
 
   handleChange = name => event => {
@@ -89,45 +92,64 @@ class AdminForm extends React.Component {
             id="select-currency"
             select
             fullWidth
-            label="Select"
-            value={this.state.currency}
-            onChange={this.handleChange('currency')}
+            label="Mode"
+            value={this.state.mode}
+            onChange={this.handleChange('mode')}
             SelectProps={{
               MenuProps: {
                 className: classes.menu
               }
             }}
-            helperText="Please select your currency"
+            helperText="Please select mode"
             margin="normal"
           >
-            {currencies.map(option => (
+            {mode.map(option => (
+              <MenuItem key={option.value} value={option.value}>
+                {option.label}
+              </MenuItem>
+            ))}
+          </TextField>
+          
+          <TextField
+            id="select-currency"
+            select
+            fullWidth
+            label="Select"
+            value={this.state.map}
+            onChange={this.handleChange('map')}
+            SelectProps={{
+              MenuProps: {
+                className: classes.menu
+              }
+            }}
+            helperText="Please select map"
+            margin="normal"
+          >
+            {map.map(option => (
               <MenuItem key={option.value} value={option.value}>
                 {option.label}
               </MenuItem>
             ))}
           </TextField>
           <TextField
-            id="select-currency-native"
-            select
-            fullWidth
-            label="Native select"
-            value={this.state.currency}
-            onChange={this.handleChange('currency')}
-            SelectProps={{
-              native: true,
-              MenuProps: {
-                className: classes.menu
-              }
-            }}
-            helperText="Please select your currency"
-            margin="normal"
-          >
-            {currencies.map(option => (
-              <option key={option.value} value={option.value}>
-                {option.label}
-              </option>
-            ))}
-          </TextField>
+        id="datetime-start"
+        label="Game Start"
+        type="datetime-local"
+        fullWidth
+        style ={{width: '100%', margin:'10px 0'}}
+        InputLabelProps={{
+          shrink: true,
+        }}
+      />
+         <TextField
+        id="datetime-end"
+        label="Game End"
+        type="datetime-local"
+        style ={{width: '100%', margin:'10px 0'}}
+        InputLabelProps={{
+          shrink: true,
+        }}
+      />
         </form>
         <Button variant="contained" color="primary" className={classes.button}>
           Send

@@ -7,7 +7,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
-export default class FormDialog extends React.Component {
+class FormDialog extends React.Component {
   state = {
     open: false
   };
@@ -46,20 +46,10 @@ export default class FormDialog extends React.Component {
   renderLoggedDialog() {
     return (
       <Dialog open={this.state.open} onClose={this.handleClose} aria-labelledby="form-dialog-title">
-        <DialogTitle id="form-dialog-title">Subscribe</DialogTitle>
-        <DialogContent>
-          <DialogContentText>
-            To subscribe to this website, please enter your email address here. We will send updates
-            occasionally.
-          </DialogContentText>
-          <TextField autoFocus margin="dense" id="name" label="Email Address" type="email" fullWidth />
-        </DialogContent>
+        <DialogTitle id="form-dialog-title">Joined Game</DialogTitle>
         <DialogActions>
           <Button onClick={this.handleClose} color="primary">
-            Cancel
-          </Button>
-          <Button onClick={this.handleClose} color="primary">
-            Subscribe
+            Ok
           </Button>
         </DialogActions>
       </Dialog>
@@ -77,3 +67,5 @@ export default class FormDialog extends React.Component {
     );
   }
 }
+
+export default FormDialog;

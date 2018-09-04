@@ -2,8 +2,8 @@ import { GET_GAMES, GET_GAMES_FAIL, GET_GAMES_SUCCESS } from '../actions/games';
 
 const initialState = {
   isFetching: false,
-  game: null,
-  error: null,
+  user: null,
+  error: null
 };
 
 export default (state = initialState, action) => {
@@ -12,21 +12,21 @@ export default (state = initialState, action) => {
       return {
         ...state,
         isFetching: true,
-        game: action.payload,
+        user: action.payload,
         error: false
       };
     case GET_GAMES_FAIL:
       return {
         ...state,
         isFetching: false,
-        game: null,
+        user: null,
         error: action.payload
       };
     case GET_GAMES_SUCCESS:
       return {
         ...state,
         isFetching: false,
-        game: action.payload,
+        user: action.payload,
         error: false
       };
     default:

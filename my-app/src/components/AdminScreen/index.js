@@ -3,11 +3,6 @@ import styled from 'styled-components';
 
 import AdminForm from './AdminForm';
 
-const Container = styled.div`
-  width: 850px;
-  margin: 0 auto;
-`;
-
 const Header = styled.h2`
   text-align: center;
 `;
@@ -21,10 +16,10 @@ class AdminScreen extends React.Component {
 
   render() {
     return (
-      <Container>
-        <Header>Admin</Header>
+      <div>
+        <Header>Create New Game</Header>
         <AdminForm />
-      </Container>
+      </div>
     );
   }
 }

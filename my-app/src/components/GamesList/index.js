@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -8,8 +7,8 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import moment from 'moment';
-// import Button from '@material-ui/core/Button';
 import GameDialog from './GameDialog';
+import { connect } from 'react-redux';
 
 const CustomTableCell = withStyles(theme => ({
   head: {
@@ -37,7 +36,6 @@ const styles = theme => ({
   }
 });
 
-// return { id, name, calories, fat, carbs, protein };
 const rows = [
   {
     id: 1,
@@ -45,7 +43,7 @@ const rows = [
     start: moment('2018-09-11T14:00:00Z').format('MMMM Do YYYY, h:mm:ss a'),
     end: moment('2018-09-11T16:00:00Z').format('MMMM Do YYYY, h:mm:ss a'),
     mode: 'capture flag',
-    map: 'bigmap',
+    map: 'London',
     players: '11'
   },
   {
@@ -54,7 +52,7 @@ const rows = [
     start: moment('2018-09-13T17:00:00Z').format('MMMM Do YYYY, h:mm:ss a'),
     end: moment('2018-09-13T18:00:00Z').format('MMMM Do YYYY, h:mm:ss a'),
     mode: 'heroes brawl',
-    map: 'smallmap',
+    map: 'Berlin',
     players: '16'
   },
   {
@@ -63,14 +61,15 @@ const rows = [
     start: moment('2018-09-22T19:00:00Z').format('MMMM Do YYYY, h:mm:ss a'),
     end: moment('2018-09-22T20:00:00Z').format('MMMM Do YYYY, h:mm:ss a'),
     mode: 'heroes brawl',
-    map: 'smallmap',
+    map: 'N/A',
     players: '7'
   }
 ];
 
-function CustomizedTable(props) {
-  const { classes } = props;
+class CustomizedTable extends React.Component {
 
+  render() {
+  const { classes } = this.props;
   return (
     <Paper className={classes.root}>
       <Table className={classes.table}>
@@ -101,7 +100,7 @@ function CustomizedTable(props) {
                   /16
                 </CustomTableCell>
                 <CustomTableCell>
-                  <GameDialog isLogin={props.isLogin} />
+                  <GameDialog isLogin={this.props.isLogin} />
                 </CustomTableCell>
               </TableRow>
             );
@@ -110,10 +109,25 @@ function CustomizedTable(props) {
       </Table>
     </Paper>
   );
+  } 
 }
 
-CustomizedTable.propTypes = {
-  classes: PropTypes.object.isRequired
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {}
+  // return {
+  //   addUser: user => {
+  //     dispatch(getGame(user));
+  //   }
+  // };
 };
 
-export default withStyles(styles)(CustomizedTable);
+const mapStateToProps = (state, ownProps) => {
+  return {
+    game: state.games.game
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withStyles(styles)(CustomizedTable));

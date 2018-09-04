@@ -31,7 +31,7 @@ class Register extends React.Component {
   };
 
   render() {
-    const { classes, user } = this.props;
+    const { classes } = this.props;
     return (
       <Container className={classes.container}>
         <Header>Register</Header>
