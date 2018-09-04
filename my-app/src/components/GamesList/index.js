@@ -39,15 +39,33 @@ const styles = theme => ({
 
 // return { id, name, calories, fat, carbs, protein };
 const rows = [
-  { id: 1, name: 'Urban Terror', 
-  start: moment('2018-09-11T14:00:00Z').format('MMMM Do YYYY, h:mm:ss a'), 
-  end: moment('2018-09-11T16:00:00Z').format('MMMM Do YYYY, h:mm:ss a'), mode: 'capture flag', map: 'bigmap', players: '11' },
-  { id: 2, name: 'Urban Terror', 
-  start: moment('2018-09-13T17:00:00Z').format('MMMM Do YYYY, h:mm:ss a'), 
-  end: moment('2018-09-13T18:00:00Z').format('MMMM Do YYYY, h:mm:ss a'), mode: 'heroes brawl', map: 'smallmap', players: '16' },
-  { id: 2, name: 'Poker', 
-  start: moment('2018-09-22T19:00:00Z').format('MMMM Do YYYY, h:mm:ss a'), 
-  end: moment('2018-09-22T20:00:00Z').format('MMMM Do YYYY, h:mm:ss a'), mode: 'heroes brawl', map: 'smallmap', players: '7' }
+  {
+    id: 1,
+    name: 'Urban Terror',
+    start: moment('2018-09-11T14:00:00Z').format('MMMM Do YYYY, h:mm:ss a'),
+    end: moment('2018-09-11T16:00:00Z').format('MMMM Do YYYY, h:mm:ss a'),
+    mode: 'capture flag',
+    map: 'bigmap',
+    players: '11'
+  },
+  {
+    id: 2,
+    name: 'Urban Terror',
+    start: moment('2018-09-13T17:00:00Z').format('MMMM Do YYYY, h:mm:ss a'),
+    end: moment('2018-09-13T18:00:00Z').format('MMMM Do YYYY, h:mm:ss a'),
+    mode: 'heroes brawl',
+    map: 'smallmap',
+    players: '16'
+  },
+  {
+    id: 2,
+    name: 'Poker',
+    start: moment('2018-09-22T19:00:00Z').format('MMMM Do YYYY, h:mm:ss a'),
+    end: moment('2018-09-22T20:00:00Z').format('MMMM Do YYYY, h:mm:ss a'),
+    mode: 'heroes brawl',
+    map: 'smallmap',
+    players: '7'
+  }
 ];
 
 function CustomizedTable(props) {
@@ -78,9 +96,12 @@ function CustomizedTable(props) {
                 <CustomTableCell>{row.end}</CustomTableCell>
                 <CustomTableCell>{row.mode}</CustomTableCell>
                 <CustomTableCell>{row.map}</CustomTableCell>
-                <CustomTableCell>{row.players}/16</CustomTableCell>
                 <CustomTableCell>
-                <GameDialog isLogin={props.isLogin} />
+                  {row.players}
+                  /16
+                </CustomTableCell>
+                <CustomTableCell>
+                  <GameDialog isLogin={props.isLogin} />
                 </CustomTableCell>
               </TableRow>
             );

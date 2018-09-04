@@ -28,7 +28,6 @@ class SimpleModal extends React.Component {
   };
 
   render() {
-
     return (
       <div>
         <Button onClick={this.handleOpen} variant="outlined" color="primary">
@@ -40,7 +39,7 @@ class SimpleModal extends React.Component {
           open={this.state.open}
           onClose={this.handleClose}
         >
-        <Login />
+          <Login />
         </Modal>
       </div>
     );

@@ -4,7 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { connect } from 'react-redux';
-import { registerUser } from '../../state/actions/users'
+import { registerUser } from '../../state/actions/users';
 
 const styles = theme => ({
   textField: {
@@ -26,59 +26,53 @@ const Container = styled.div`
 `;
 
 class Register extends React.Component {
-  
   onRegister = () => {
     this.props.addUser(1);
-  }
+  };
 
   render() {
     const { classes, user } = this.props;
-  return (
-    <Container className={classes.container}>
-      <Header>Register</Header>
-      <TextField
-        label="Name"
-        id="margin-none"
-        className={classes.textField}
-        helperText="enter name here"
-      />
-      <TextField
-        label="Email"
-        id="margin-dense"
-        className={classes.textField}
-        helperText="enter email here"
-        margin="dense"
-      />
-      <TextField
-        label="Password"
-        id="margin-normal"
-        className={classes.textField}
-        helperText="type your password"
-        margin="normal"
-      />
-      <Button variant="outlined" color="primary" onClick={this.onRegister}>
-        Register
-      </Button>
-    </Container>
-  );
+    return (
+      <Container className={classes.container}>
+        <Header>Register</Header>
+        <TextField label="Name" id="margin-none" className={classes.textField} helperText="enter name here" />
+        <TextField
+          label="Email"
+          id="margin-dense"
+          className={classes.textField}
+          helperText="enter email here"
+          margin="dense"
+        />
+        <TextField
+          label="Password"
+          id="margin-normal"
+          className={classes.textField}
+          helperText="type your password"
+          margin="normal"
+        />
+        <Button variant="outlined" color="primary" onClick={this.onRegister}>
+          Register
+        </Button>
+      </Container>
+    );
+  }
 }
-};
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    addUser: (user) => {
+    addUser: user => {
       dispatch(registerUser(user));
     }
-  }
-}
+  };
+};
 
 const mapStateToProps = (state, ownProps) => {
   return {
     user: state.users.user
-  }
-}
+  };
+};
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withStyles(styles)(Register))
+)(withStyles(styles)(Register));
