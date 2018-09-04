@@ -9,6 +9,12 @@ import LockIcon from '@material-ui/icons/LockOutlined';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
+import styled from 'styled-components';
+
+const Message = styled.div`
+margin: 10px 0;
+color: red;
+`;
 
 const styles = theme => ({
   layout: {
@@ -48,7 +54,8 @@ class Login extends React.Component {
 
     this.state = {
       email: '',
-      password: ''
+      password: '',
+      message: ''
     };
   }
 
@@ -59,8 +66,9 @@ class Login extends React.Component {
   };
 
   handleLoginCheck = () => {
-    this.props.handleClose();
-    this.props.checkLogin(this.state.email, this.state.password);
+    const isSuccess = this.props.checkLogin(this.state.email, this.state.password);
+
+    !isSuccess ? this.setState({ message: 'wrong password' }) : this.props.handleClose();
   };
 
   render() {
@@ -108,6 +116,7 @@ class Login extends React.Component {
                 Sign in
               </Button>
             </form>
+            <Message>{this.state.message}</Message>
           </Paper>
         </main>
       </React.Fragment>

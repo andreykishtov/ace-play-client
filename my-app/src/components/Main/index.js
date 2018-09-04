@@ -43,7 +43,7 @@ class MainPage extends React.Component {
   renderLoggedIn = () => {
     return (
       <LoggedContainer>
-        <Name>Hello, Andrey</Name>
+        <Name>Hello, Admin</Name>
         <Button onClick={this.props.logout} style={{ margin: '0 5px' }} variant="contained" color="primary">
           Log Out
         </Button>

@@ -44,7 +44,8 @@ const rows = [
     end: moment('2018-09-11T16:00:00Z').format('MMMM Do YYYY, h:mm:ss a'),
     mode: 'capture flag',
     map: 'London',
-    players: '11'
+    players: 11,
+    joined: true
   },
   {
     id: 2,
@@ -53,67 +54,89 @@ const rows = [
     end: moment('2018-09-13T18:00:00Z').format('MMMM Do YYYY, h:mm:ss a'),
     mode: 'heroes brawl',
     map: 'Berlin',
-    players: '16'
+    players: 15,
+    joined: false
   },
   {
-    id: 2,
+    id: 3,
     name: 'Poker',
     start: moment('2018-09-22T19:00:00Z').format('MMMM Do YYYY, h:mm:ss a'),
     end: moment('2018-09-22T20:00:00Z').format('MMMM Do YYYY, h:mm:ss a'),
     mode: 'heroes brawl',
     map: 'N/A',
-    players: '7'
+    players: 7,
+    joined: true
   }
 ];
 
 class CustomizedTable extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = { rows: rows };
+  }
+
+  onJoin = id => {
+    console.log(id);
+    const rows = this.state.rows.map(item => {
+      if (item.id === id) {
+        return { ...item, joined: !item.joined, players: item.joined ? item.players - 1 : item.players + 1 };
+      }
+      return item;
+    });
+    this.setState({ rows });
+  };
 
   render() {
-  const { classes } = this.props;
-  return (
-    <Paper className={classes.root}>
-      <Table className={classes.table}>
-        <TableHead>
-          <TableRow>
-            <CustomTableCell>Game name</CustomTableCell>
-            <CustomTableCell>Start at</CustomTableCell>
-            <CustomTableCell>end at</CustomTableCell>
-            <CustomTableCell>Mode</CustomTableCell>
-            <CustomTableCell>Map</CustomTableCell>
-            <CustomTableCell>Players</CustomTableCell>
-            <CustomTableCell />
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rows.map(row => {
-            return (
-              <TableRow className={classes.row} key={row.id}>
-                <CustomTableCell component="th" scope="row">
-                  {row.name}
-                </CustomTableCell>
-                <CustomTableCell>{row.start}</CustomTableCell>
-                <CustomTableCell>{row.end}</CustomTableCell>
-                <CustomTableCell>{row.mode}</CustomTableCell>
-                <CustomTableCell>{row.map}</CustomTableCell>
-                <CustomTableCell>
-                  {row.players}
-                  /16
-                </CustomTableCell>
-                <CustomTableCell>
-                  <GameDialog isLogin={this.props.isLogin} />
-                </CustomTableCell>
-              </TableRow>
-            );
-          })}
-        </TableBody>
-      </Table>
-    </Paper>
-  );
-  } 
+    const { classes } = this.props;
+    return (
+      <Paper className={classes.root}>
+        <Table className={classes.table}>
+          <TableHead>
+            <TableRow>
+              <CustomTableCell>Game name</CustomTableCell>
+              <CustomTableCell>Start at</CustomTableCell>
+              <CustomTableCell>end at</CustomTableCell>
+              <CustomTableCell>Mode</CustomTableCell>
+              <CustomTableCell>Map</CustomTableCell>
+              <CustomTableCell>Players</CustomTableCell>
+              <CustomTableCell />
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {this.state.rows.map(row => {
+              return (
+                <TableRow className={classes.row} key={row.id}>
+                  <CustomTableCell component="th" scope="row">
+                    {row.name}
+                  </CustomTableCell>
+                  <CustomTableCell>{row.start}</CustomTableCell>
+                  <CustomTableCell>{row.end}</CustomTableCell>
+                  <CustomTableCell>{row.mode}</CustomTableCell>
+                  <CustomTableCell>{row.map}</CustomTableCell>
+                  <CustomTableCell>
+                    {row.players}
+                    /16
+                  </CustomTableCell>
+                  <CustomTableCell>
+                    <GameDialog
+                      onJoin={() => this.onJoin(row.id)}
+                      joined={row.joined}
+                      isLogin={this.props.isLogin}
+                    />
+                  </CustomTableCell>
+                </TableRow>
+              );
+            })}
+          </TableBody>
+        </Table>
+      </Paper>
+    );
+  }
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-  return {}
+  return {};
   // return {
   //   addUser: user => {
   //     dispatch(getGame(user));

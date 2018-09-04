@@ -13,6 +13,7 @@ class FormDialog extends React.Component {
   };
 
   handleClickOpen = () => {
+    this.props.onJoin();
     this.setState({ open: true });
   };
 
@@ -57,11 +58,26 @@ class FormDialog extends React.Component {
   }
 
   render() {
+    console.log(this.props.joined);
     return (
       <div>
-        <Button variant="outlined" color="primary" onClick={this.handleClickOpen}>
-          Join
-        </Button>
+        {this.props.joined ? (
+          <Button
+            onClick={this.props.onJoin}
+            variant="outlined"
+            color="primary"
+          >
+            Exit
+          </Button>
+        ) : (
+          <Button
+            variant="outlined"
+            color="primary"
+            onClick={this.handleClickOpen}
+          >
+            Join
+          </Button>
+        )}
         {this.props.isLogin ? this.renderLoggedDialog() : this.renderLoginDialog()}
       </div>
     );

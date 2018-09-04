@@ -20,7 +20,7 @@ class App extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { currentPage: REGISTER, isLogin: true, isAdmin: true };
+    this.state = { currentPage: MAIN, isLogin: true, isAdmin: true };
   }
 
   onChangePage = page => {
@@ -28,11 +28,11 @@ class App extends Component {
   };
 
   checkLogin = (email, password) => {
-    if (email === '1' && password === '1') {
+    if (email === 'admin' && password === 'admin') {
       this.setState({ isLogin: true });
-      return 'login success';
+      return true;
     }
-    return 'wrong password';
+    return false;
   };
 
   logout = () => {
