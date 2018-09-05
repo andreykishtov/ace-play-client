@@ -94,7 +94,7 @@ class CustomizedTable extends React.Component {
         <Table className={classes.table}>
           <TableHead>
             <TableRow>
-              <CustomTableCell>Game name</CustomTableCell>
+              <CustomTableCell>Game</CustomTableCell>
               <CustomTableCell>Start at</CustomTableCell>
               <CustomTableCell>end at</CustomTableCell>
               <CustomTableCell>Mode</CustomTableCell>
